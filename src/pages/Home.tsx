@@ -1,15 +1,16 @@
+import "./Home.css"
 import Header from "../features/header/Header"
+import HomePage from "../features/home/HomePage"
 import Footer from "../features/footer/Footer"
 
-function SignIn() {
+function Home() {
   return (
     <div>
       <Header />
-      <div>signin page</div>
-
+      <HomePage />
       <Footer />
     </div>
   )
 }
 
-export default SignIn
+export default Home
