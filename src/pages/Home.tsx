@@ -1,13 +1,13 @@
 import "./Home.css"
 import Header from "../features/header/Header"
-import HomePage from "../features/home/HomePage"
-import Footer from "../features/footer/Footer"
+import HomeBody from "../compoments/home/HomeBody"
+import Footer from "../compoments/footer/Footer"
 
 function Home() {
   return (
     <div>
       <Header />
-      <HomePage />
+      <HomeBody />
       <Footer />
     </div>
   )
