@@ -1,7 +1,7 @@
 import logo from "../../designs/img/argentBankLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-
+import SignPage from '../../pages/SignPage';
 
 function Header() {
   return (
@@ -14,9 +14,11 @@ function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div>
-        <a className="main-nav-item" href="./sign-in.html">
-        <FontAwesomeIcon icon={faUserCircle}/>  Sign In
+        <a className="main-nav-item" href="#">
+          <FontAwesomeIcon icon={faUserCircle}/>  
+          Sign In
         </a>
+        <SignPage />
       </div>
     </nav>
   );
