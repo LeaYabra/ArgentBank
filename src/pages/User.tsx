@@ -1,5 +1,5 @@
 import Header from "../features/header/Header"
-import Footer from "../compoments/footer/Footer"
+import Footer from "../components/footer/Footer"
 
 function User() {
   return (

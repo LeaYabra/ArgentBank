@@ -16,7 +16,11 @@ export const loginFailure = (error: string) => ({
 })
 
 // Thunk : Effectue une requête d'authentification asynchrone
-export const loginUser = (username: string, password: string): AppThunk => {
+export const loginUser = (
+  email: string,
+  password: string,
+  navigationHelper: (str: string) => void,
+): AppThunk => {
   return async (dispatch) => {
     try {
       // Dispatch de l'action "LOGIN_REQUEST" pour indiquer le début de la requête
@@ -28,14 +32,18 @@ export const loginUser = (username: string, password: string): AppThunk => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       })
 
       // Vérifie si la réponse est réussie (statut 200 OK)
       if (response.ok) {
         // Récupère les données de la réponse (token) et dispatch l'action "LOGIN_SUCCESS"
         const data = await response.json()
-        dispatch(loginSuccess(data.token))
+        dispatch(loginSuccess(data.body.token))
+        // prendre les infos utilisateur
+
+        // redirect !
+        return navigationHelper("/user")
       } else {
         // En cas d'échec, récupère les données d'erreur de la réponse et dispatch l'action "LOGIN_FAILURE"
         const errorData = await response.json()

@@ -1,25 +1,27 @@
 import React, { useState } from "react"
 import Header from "../features/header/Header"
-import Footer from "../compoments/footer/Footer"
+import Footer from "../components/footer/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons"
 import { useDispatch } from "react-redux"
 import { loginUser } from "../features/userLogin/userActions"
 import { AppDispatch } from "../app/store"
+import { useNavigate } from "react-router-dom"
 
 function SignIn() {
+  const navigationHelper = useNavigate()
   // Utilisation du hook useDispatch pour obtenir la fonction de dispatch Redux
   const dispatch: AppDispatch = useDispatch()
 
   // États locaux pour stocker les données du formulaire
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   // Fonction pour gérer la soumission du formulaire
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     // Dispatch de l'action d'authentification avec les données du formulaire
-    dispatch(loginUser(username, password))
+    dispatch(loginUser(email, password, navigationHelper))
   }
 
   return (
@@ -35,8 +37,8 @@ function SignIn() {
               <input
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="input-wrapper">
