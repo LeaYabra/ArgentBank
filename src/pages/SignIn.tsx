@@ -3,24 +3,23 @@ import Header from "../features/header/Header"
 import Footer from "../components/footer/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../features/userLogin/userActions"
-import { AppDispatch } from "../app/store"
+import { AppDispatch, RootState } from "../app/store"
 import { useNavigate } from "react-router-dom"
 
 function SignIn() {
   const navigationHelper = useNavigate()
-  // Utilisation du hook useDispatch pour obtenir la fonction de dispatch Redux
   const dispatch: AppDispatch = useDispatch()
 
-  // États locaux pour stocker les données du formulaire
+  // Redux state to get the login error
+  const loginError = useSelector((state: RootState) => state.user.error)
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  // Fonction pour gérer la soumission du formulaire
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Dispatch de l'action d'authentification avec les données du formulaire
     dispatch(loginUser(email, password, navigationHelper))
   }
 
@@ -31,6 +30,7 @@ function SignIn() {
         <section className="sign-in-content">
           <FontAwesomeIcon icon={faUserCircle} />
           <h1>Sign In</h1>
+          {loginError && <div className="error-message">{loginError}</div>}
           <form onSubmit={handleSignIn}>
             <div className="input-wrapper">
               <label htmlFor="username">Username</label>
@@ -60,7 +60,6 @@ function SignIn() {
           </form>
         </section>
       </main>
-
       <Footer />
     </div>
   )

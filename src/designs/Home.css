@@ -5,7 +5,9 @@ html {
   text-align: center;
   color: #2c3e50;
 }
-
+.error-message{
+  color: red;
+}
 body {
   margin: 0;
   display: flex;
