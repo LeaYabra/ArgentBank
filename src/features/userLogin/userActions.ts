@@ -95,7 +95,6 @@ export const loginUser = (
             ),
           )
         }
-
         // Redirect
         return navigationHelper("/user")
       } else {

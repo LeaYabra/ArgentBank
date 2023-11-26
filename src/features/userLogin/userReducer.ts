@@ -44,6 +44,11 @@ const userReducer = (state = initialState, action: any) => {
         success: false,
         error: action.payload.error,
       }
+    case "LOGOUT":
+      return {
+        ...state,
+        success: false,
+      }
 
     // Cas par défaut : retourner l'état actuel
     default:

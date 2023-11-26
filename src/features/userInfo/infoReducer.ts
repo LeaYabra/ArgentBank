@@ -1,5 +1,5 @@
 // Définition de la structure de l'état utilisateur
-interface InfoState {
+export interface InfoState {
   token: string | null
   firstName: string
   lastName: string
@@ -7,7 +7,7 @@ interface InfoState {
   error: string | null
 }
 // État initial pour le réducteur utilisateur
-const informationState: InfoState = {
+export const informationState: InfoState = {
   token: null,
   firstName: "",
   lastName: "",
@@ -28,7 +28,6 @@ const infoReducer = (state = informationState, action: any) => {
         success: true,
         error: null,
       }
-
     // Gérer l'action d'échec de connexion
     case "FETCH_USER_INFO_FAILURE":
       console.log("FETCH_USER_INFO_FAILURE", action.payload)
