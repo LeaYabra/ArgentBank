@@ -52,6 +52,9 @@ export const loginUser = (
         const data = await response.json()
         dispatch(loginSuccess(data.body.token))
 
+        // faire cela avec un dispatch et une action clean au lieu de faire la requête direct
+        // par exemple
+        // dispatch(fetchUserInfos())
         // Après la connexion réussie, effectuez une autre requête pour obtenir les informations de l'utilisateur
         try {
           // Effectue la requête pour obtenir les informations de l'utilisateur
