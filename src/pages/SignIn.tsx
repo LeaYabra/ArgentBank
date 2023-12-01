@@ -1,6 +1,6 @@
-import Header from "../features/header/Header"
+import Header from "../features/header/header"
 import Footer from "../components/footer/Footer"
-import Form from "../features/userLogin/formSign"
+import Form from "../features/login/formSign"
 
 function SignIn() {
   return (

@@ -20,7 +20,6 @@ const infoReducer = (state = informationState, action: any) => {
   switch (action.type) {
     // Gérer l'action de connexion réussie
     case "FETCH_USER_INFO_SUCCESS":
-      console.log("FETCH_USER_INFO_SUCCESS", action.payload)
       return {
         ...state,
         firstName: action.payload.firstName,

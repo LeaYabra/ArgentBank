@@ -1,13 +1,29 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { Provider } from "react-redux"
-import { store, persistor } from "./app/store"
-import Home from "./pages/Home"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { Provider, useSelector } from "react-redux"
+import { store, persistor, RootState } from "./app/store"
+import {
+  createBrowserRouter,
+  RouterProvider,
+  RouteProps,
+  Navigate,
+} from "react-router-dom"
 import "./index.css"
 import SignIn from "./pages/SignIn"
 import User from "./pages/User"
+import Home from "./pages/Home"
 import { PersistGate } from "redux-persist/integration/react"
+
+const PrivateRoute: React.FC<RouteProps & { element: React.ReactNode }> = ({
+  element,
+}) => {
+  // Utilisation de useSelector pour accéder à l'état Redux
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.user.token !== null,
+  )
+  // Rendu conditionnel basé sur l'authentification de l'utilisateur
+  return isAuthenticated ? <>{element}</> : <Navigate to="/" />
+}
 
 const router = createBrowserRouter([
   {
@@ -20,7 +36,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user",
-    element: <User />,
+    element: <PrivateRoute element={<User />} />,
   },
 ])
 

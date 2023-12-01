@@ -1,5 +1,5 @@
 import "../designs/Home.css"
-import Header from "../features/header/Header"
+import Header from "../features/header/header"
 import HomeBody from "../components/home/HomeBody"
 import Footer from "../components/footer/Footer"
 

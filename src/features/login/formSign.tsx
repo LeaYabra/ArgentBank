@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser } from "./userActions"
+import { loginUser } from "./actions"
 import { AppDispatch, RootState } from "../../app/store"
 import { useNavigate } from "react-router-dom"
 

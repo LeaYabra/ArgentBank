@@ -1,21 +1,14 @@
-import logo from "../../designs/img/argentBankLogo.png"
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faEnvelopeOpen,
   faUserCircle,
 } from "@fortawesome/free-regular-svg-icons"
-import { RootState } from "../../app/store"
-import { useDispatch } from "react-redux"
+import { useAuth } from "./action"
+import logo from "../../designs/img/argentBankLogo.png"
 
 function Header() {
-  const isAuthenticated = useSelector((state: RootState) => state.user.success)
-  const dispatch = useDispatch()
-
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" })
-  }
+  const { isAuthenticated, handleLogout } = useAuth()
 
   return (
     <nav className="main-nav">

@@ -46,8 +46,7 @@ const userReducer = (state = initialState, action: any) => {
       }
     case "LOGOUT":
       return {
-        ...state,
-        success: false,
+        ...initialState,
       }
 
     // Cas par défaut : retourner l'état actuel
