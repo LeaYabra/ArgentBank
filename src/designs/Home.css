@@ -60,7 +60,11 @@ body {
   margin-right: 0.5rem;
   display: flex;
   align-items: center; 
-  gap: 0.5em; 
+  gap: 0.2em; 
+}
+.headerAction{
+  display: flex;
+  gap: 0.5em;
 }
 
 .main-nav-item:hover {
@@ -180,6 +184,7 @@ body {
   margin-top: 3rem;
   padding: 2rem;
 }
+
 
 .sign-in-icon {
   font-size: 5rem;
