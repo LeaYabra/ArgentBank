@@ -111,6 +111,85 @@ body {
   font-size: 0.9rem;
 }
 
+.modal-background {
+  width: 30%;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(90px);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal-title {
+  color: #00bc77;
+  font-weight: 500;
+  font-size: large;
+}
+
+.form-edit{
+  margin: 10px;
+}
+
+.form-label{
+  color: #12002b;
+  display: flex;
+}
+.form-input{
+  border-radius: 10px;
+  border-color: #00bc77;
+  width: 60%;
+  margin-left: 2px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.close {
+  color: red;
+  font-size: 30px;
+  align-self: flex-end; 
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: #00bc77;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Style pour masquer le modal par défaut */
+.modal-background.hidden {
+  display: none;
+}
+
+
 @media (min-width: 920px) {
   .hero {
     height: 400px;
@@ -144,6 +223,7 @@ body {
     flex-direction: row;
   }
 }
+
 
 .feature-icon {
   width: 100px;
@@ -287,12 +367,14 @@ body {
   background-color: #00bc77;
   color: #fff;
 }
+.modal-background {
+  width: 80%;
+}
 
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
   }
-
   .account-content-wrapper.cta {
     flex: 0;
   }

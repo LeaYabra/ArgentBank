@@ -1,8 +1,15 @@
 import { RootState } from "../../app/store"
 import { useSelector } from "react-redux"
-
+import UserUpdate from "../update/edit"
+import { useState } from "react"
 function User() {
   const { firstName, lastName } = useSelector((state: RootState) => state.info)
+  const [isEditing, setIsEditing] = useState(false)
+
+  const handleEditClick = () => {
+    setIsEditing(true)
+  }
+
   return (
     <div>
       <main className="main bg-dark">
@@ -12,7 +19,10 @@ function User() {
             <br />
             {`${firstName} ${lastName}!`}
           </h1>
-          <button className="edit-button">Edit Name</button>
+          <button className="edit-button" onClick={handleEditClick}>
+            Edit Name
+          </button>
+          {isEditing && <UserUpdate />}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

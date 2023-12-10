@@ -29,7 +29,6 @@ const infoReducer = (state = informationState, action: any) => {
       }
     // Gérer l'action d'échec de connexion
     case "FETCH_USER_INFO_FAILURE":
-      console.log("FETCH_USER_INFO_FAILURE", action.payload)
       return {
         ...state,
         firstName: "",
