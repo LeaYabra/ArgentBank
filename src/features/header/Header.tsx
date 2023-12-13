@@ -9,7 +9,6 @@ import logo from "../../designs/img/argentBankLogo.png"
 
 function Header() {
   const { isAuthenticated, handleLogout, getName } = useAuth()
-
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to={"/"}>

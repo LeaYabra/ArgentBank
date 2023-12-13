@@ -1,13 +1,21 @@
 import { RootState } from "../../app/store"
 import { useSelector } from "react-redux"
-import UserUpdate from "../update/edit"
+import UserUpdate from "../update/update"
 import { useState } from "react"
+
 function User() {
   const { firstName, lastName } = useSelector((state: RootState) => state.info)
   const [isEditing, setIsEditing] = useState(false)
+  const [newFirstName, setNewFirstName] = useState(firstName)
 
   const handleEditClick = () => {
     setIsEditing(true)
+  }
+
+  const handleUpdate = () => {
+    setIsEditing(false)
+    setNewFirstName(newFirstName)
+    console.log("Nouveau prénom", newFirstName)
   }
 
   return (
@@ -22,7 +30,7 @@ function User() {
           <button className="edit-button" onClick={handleEditClick}>
             Edit Name
           </button>
-          {isEditing && <UserUpdate />}
+          {isEditing && <UserUpdate onUpdate={handleUpdate} />}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

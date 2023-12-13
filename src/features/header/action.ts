@@ -10,7 +10,7 @@ export const useAuth = () => {
     dispatch({ type: "LOGOUT" })
   }
   const getName = () => {
-    return info.firstName // Assurez-vous que "firstname" est le bon champ dans votre state
+    return info.firstName
   }
 
   return { isAuthenticated, handleLogout, getName }

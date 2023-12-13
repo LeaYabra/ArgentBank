@@ -8,6 +8,7 @@ import { persistStore, persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import userReducer from "../features/login/reducer"
 import infoReducer from "../features/info/reducer"
+import updateReducer from "../features/update/reducer"
 
 const persistConfig = {
   key: "newRootKey",
@@ -17,6 +18,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   info: infoReducer,
+  update: updateReducer,
 })
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer)
