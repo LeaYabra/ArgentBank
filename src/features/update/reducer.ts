@@ -12,14 +12,14 @@ export const updateState: UpdateState = {
 // Fonction de réduction pour gérer les actions liées à l'utilisateur
 const updateReducer = (state = updateState, action: any) => {
   switch (action.type) {
-    // Gérer l'action de modification réussie
+    // Gère l'action de modification réussie
     case "UPDATE_USER_INFO_SUCCESS":
       return {
         ...state,
         success: true,
         error: null,
       }
-    // Gérer l'action d'échec de modification
+    // Gère l'action d'échec de modification
     case "UPDATE_USER_INFO_FAILURE":
       return {
         ...state,

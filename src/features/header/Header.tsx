@@ -8,7 +8,7 @@ import { useAuth } from "./action"
 import logo from "../../designs/img/argentBankLogo.png"
 
 function Header() {
-  const { isAuthenticated, handleLogout, getName } = useAuth()
+  const { isAuthenticated, handleLogout, firstName } = useAuth()
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to={"/"}>
@@ -24,7 +24,7 @@ function Header() {
           <>
             <Link className="main-nav-item" to={"/user"}>
               <FontAwesomeIcon icon={faUserCircle} />
-              {getName()}
+              {firstName}
             </Link>
             <Link className="main-nav-item" to={"/"} onClick={handleLogout}>
               <FontAwesomeIcon icon={faEnvelopeOpen} />

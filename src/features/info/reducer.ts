@@ -16,7 +16,7 @@ export const informationState: InfoState = {
 // Fonction de réduction pour gérer les actions liées à l'utilisateur
 const infoReducer = (state = informationState, action: any) => {
   switch (action.type) {
-    // Gérer l'action d'info récuperer
+    // Gère l'action d'info récuperer
     case "FETCH_USER_INFO_SUCCESS":
       return {
         ...state,
@@ -25,7 +25,7 @@ const infoReducer = (state = informationState, action: any) => {
         success: true,
         error: null,
       }
-    // Gérer l'action d'échec de récuparation
+    // Gère l'action d'échec de récuparation
     case "FETCH_USER_INFO_FAILURE":
       return {
         ...state,

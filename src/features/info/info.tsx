@@ -10,6 +10,9 @@ function User() {
   const handleEditClick = () => {
     setIsEditing(true)
   }
+  const handleCloseModal = () => {
+    setIsEditing(false)
+  }
 
   return (
     <div>
@@ -23,7 +26,7 @@ function User() {
           <button className="edit-button" onClick={handleEditClick}>
             Edit Name
           </button>
-          {isEditing && <UserUpdate />}
+          {isEditing && <UserUpdate onClose={handleCloseModal} />}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

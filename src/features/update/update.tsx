@@ -1,71 +1,70 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { RootState } from "../../app/store"
 import { updateUserInfo } from "./action"
+import {
+  selectFirstName,
+  selectLastName,
+  selectUpdateSuccess,
+  selectUpdateError,
+} from "./selectors"
 
-function UserUpdate() {
+interface UserUpdateProps {
+  onClose: () => void //  fonction ne renvoyant rien
+}
+
+function UserUpdate({ onClose }: UserUpdateProps) {
   const dispatch = useDispatch()
-  const { firstName, lastName } = useSelector((state: RootState) => state.info)
+  const firstName = useSelector(selectFirstName)
+  const lastName = useSelector(selectLastName)
+  const updateSuccess = useSelector(selectUpdateSuccess)
+  const updateError = useSelector(selectUpdateError)
 
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
   const [isModalOpen, setIsEditing] = useState(true)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const closeModal = () => {
     setIsEditing(false)
+    setShowSuccessMessage(false)
+    setShowErrorMessage(false)
+    onClose() // Appele la fonction onClose pour mettre à jour isEditing dans le composant User
   }
 
   const handleSaveClick = async () => {
     dispatch(updateUserInfo(newFirstName, newLastName) as any)
-    closeModal()
+    if (updateSuccess) {
+      setShowSuccessMessage(true)
+      // Ferme la modale automatiquement après un délai
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+        closeModal()
+      }, 2000)
+    } else if (updateError) {
+      setShowErrorMessage(true)
+    }
   }
 
-  // Utilisez useEffect pour détecter les changements dans firstName et lastName
+  // Utilise useEffect pour détecter les changements dans firstName et lastName
   useEffect(() => {
     setNewFirstName(firstName)
     setNewLastName(lastName)
   }, [firstName, lastName])
 
-  // utilisez touche entree pour enregistrer
+  // utilise touche entree et echap pour enregistrer/fermer
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Escape") {
       e.preventDefault()
-
-      // Trouver l'index du champ actuel dans le formulaire
-      const formElements = Array.from(e.currentTarget.form?.elements || [])
-      const currentIndex = formElements.indexOf(e.currentTarget)
-
-      console.log("currentIndex:", currentIndex)
-      console.log("formElements.length:", formElements.length)
-
-      if (currentIndex < formElements.length - 1) {
-        const nextElement = formElements[currentIndex + 1] as HTMLInputElement
-        nextElement.focus()
-        console.log("Focus set to next element")
-      } else {
-        console.log("Handle save and alert...")
-        handleSaveClick()
-      }
+      closeModal()
+    } else if (e.key === "Enter") {
+      e.preventDefault()
+      handleSaveClick()
     }
   }
-  //utilisez touche echap pour fermer
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault()
-        closeModal()
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [isModalOpen])
 
   return (
-    // Utilisez la variable d'état isModalOpen pour gérer la visibilité de la fenêtre modale
+    // Utilise la variable d'état isModalOpen pour gérer la visibilité de la fenêtre modale
     isModalOpen && (
       <div className="modal-background">
         <form className="modal-content">
@@ -112,6 +111,18 @@ function UserUpdate() {
               Enregistrer
             </button>
           </div>
+
+          {showSuccessMessage && (
+            <label className="success-notification">
+              La mise à jour a réussi !
+            </label>
+          )}
+
+          {showErrorMessage && (
+            <div className="error-notification">
+              Échec de la mise à jour : {updateError}
+            </div>
+          )}
         </form>
       </div>
     )

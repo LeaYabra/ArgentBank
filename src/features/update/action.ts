@@ -17,8 +17,6 @@ export const updateUserInfo = (
 ): AppThunk => {
   return async (dispatch, getState) => {
     const token = getToken(getState())
-    console.log("token", token)
-
     try {
       const userInfoResponse = await fetch(
         "http://localhost:3001/api/v1/user/profile",

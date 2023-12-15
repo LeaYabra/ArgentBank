@@ -17,7 +17,7 @@ const initialState: UserState = {
 // Fonction de réduction pour gérer les actions liées à l'utilisateur
 const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    // Gérer l'action de demande de connexion
+    // Gère l'action de demande de connexion
     case "LOGIN_REQUEST":
       return {
         ...state,
@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action: any) => {
         error: null,
       }
 
-    // Gérer l'action de connexion réussie
+    // Gère l'action de connexion réussie
     case "LOGIN_SUCCESS":
       return {
         ...state,

@@ -3,16 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "./actions"
-import { AppDispatch, RootState } from "../../app/store"
+import { AppDispatch } from "../../app/store"
 import { useNavigate } from "react-router-dom"
+import { selectLoginError } from "./selectors"
 
 function SignIn() {
   const navigationHelper = useNavigate()
   const dispatch: AppDispatch = useDispatch()
-
-  // Redux state to get the login error
-  const loginError = useSelector((state: RootState) => state.user.error)
-
+  // Redux state pour obtenir l'erreur de connexion
+  const loginError = useSelector(selectLoginError)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 

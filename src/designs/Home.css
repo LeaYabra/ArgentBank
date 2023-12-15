@@ -192,7 +192,12 @@ body {
   padding: 10px;
   cursor: pointer;
 }
-
+.success-notification{
+  color: #00bc77;
+}
+.error-notification{
+  color: red;
+}
 @media (min-width: 920px) {
   .hero {
     height: 400px;
