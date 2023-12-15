@@ -3,13 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../app/store"
 import { updateUserInfo } from "./action"
 
-interface UserUpdateProps {
-  onUpdate: (newFirstName: string, newLastName: string) => void
-}
-
-function UserUpdate({ onUpdate }: UserUpdateProps) {
+function UserUpdate() {
   const dispatch = useDispatch()
-  const { token } = useSelector((state: RootState) => state.user)
   const { firstName, lastName } = useSelector((state: RootState) => state.info)
 
   const [newFirstName, setNewFirstName] = useState(firstName)
@@ -21,13 +16,8 @@ function UserUpdate({ onUpdate }: UserUpdateProps) {
   }
 
   const handleSaveClick = async () => {
-    if (token) {
-      dispatch(updateUserInfo(token, newFirstName, newLastName) as any)
-      closeModal()
-      onUpdate(newFirstName, newLastName)
-    } else {
-      console.error("Le token est null")
-    }
+    dispatch(updateUserInfo(newFirstName, newLastName) as any)
+    closeModal()
   }
 
   // Utilisez useEffect pour détecter les changements dans firstName et lastName
@@ -35,14 +25,6 @@ function UserUpdate({ onUpdate }: UserUpdateProps) {
     setNewFirstName(firstName)
     setNewLastName(lastName)
   }, [firstName, lastName])
-
-  // Utilisez useEffect pour appeler la fonction de mise à jour quand isModalOpen devient false
-  useEffect(() => {
-    console.log("update", newFirstName)
-    if (!isModalOpen) {
-      onUpdate(newFirstName, newLastName)
-    }
-  }, [isModalOpen, newFirstName, newLastName, onUpdate])
 
   // utilisez touche entree pour enregistrer
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

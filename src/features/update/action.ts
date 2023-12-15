@@ -1,8 +1,9 @@
 import { AppThunk } from "../../app/store"
+import { fetchUserInfoSuccess } from "../info/actions"
+import { getToken } from "../login/selectors"
 
-export const updateUserInfoSuccess = (firstName: string, lastName: string) => ({
+export const updateUserInfoSuccess = () => ({
   type: "UPDATE_USER_INFO_SUCCESS",
-  payload: { firstName, lastName },
 })
 
 export const updateUserInfoFailure = (error: string) => ({
@@ -11,11 +12,13 @@ export const updateUserInfoFailure = (error: string) => ({
 })
 
 export const updateUserInfo = (
-  token: string,
   firstName: string,
   lastName: string,
 ): AppThunk => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const token = getToken(getState())
+    console.log("token", token)
+
     try {
       const userInfoResponse = await fetch(
         "http://localhost:3001/api/v1/user/profile",
@@ -28,14 +31,11 @@ export const updateUserInfo = (
           body: JSON.stringify({ firstName, lastName }),
         },
       )
-      console.log(token)
       if (userInfoResponse.ok) {
         const userInfo = await userInfoResponse.json()
+        dispatch(updateUserInfoSuccess())
         dispatch(
-          updateUserInfoSuccess(
-            userInfo.body.firstName,
-            userInfo.body.lastName,
-          ),
+          fetchUserInfoSuccess(userInfo.body.firstName, userInfo.body.lastName),
         )
       } else {
         const errorData = await userInfoResponse.json()

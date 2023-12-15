@@ -1,16 +1,10 @@
 // Définition de la structure de la modification info
 export interface UpdateState {
-  token: string | null
-  firstName: string
-  lastName: string
   success: boolean
   error: string | null
 }
 // État initial pour le réducteur utilisateur
 export const updateState: UpdateState = {
-  token: null,
-  firstName: "",
-  lastName: "",
   success: false,
   error: null,
 }
@@ -22,8 +16,6 @@ const updateReducer = (state = updateState, action: any) => {
     case "UPDATE_USER_INFO_SUCCESS":
       return {
         ...state,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
         success: true,
         error: null,
       }
@@ -31,8 +23,6 @@ const updateReducer = (state = updateState, action: any) => {
     case "UPDATE_USER_INFO_FAILURE":
       return {
         ...state,
-        firstName: "",
-        LastName: "",
         success: false,
         error: action.payload.error,
       }

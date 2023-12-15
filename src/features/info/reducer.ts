@@ -1,6 +1,5 @@
 // Définition de la structure des infos utilisateur
 export interface InfoState {
-  token: string | null
   firstName: string
   lastName: string
   success: boolean
@@ -8,7 +7,6 @@ export interface InfoState {
 }
 // État initial pour le réducteur utilisateur
 export const informationState: InfoState = {
-  token: null,
   firstName: "",
   lastName: "",
   success: false,
