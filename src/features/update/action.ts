@@ -1,6 +1,7 @@
 import { AppThunk } from "../../app/store"
 import { fetchUserInfoSuccess } from "../info/actions"
 import { getToken } from "../login/selectors"
+import { redirect } from "react-router-dom"
 
 export const updateUserInfoSuccess = () => ({
   type: "UPDATE_USER_INFO_SUCCESS",
@@ -18,6 +19,12 @@ export const updateUserInfo = (
   return async (dispatch, getState) => {
     const token = getToken(getState())
     try {
+      if (!token) {
+        console.error("Jeton d'authentification manquant.")
+        // Rediriger vers la page de connexion
+        redirect("/sign-in")
+        return
+      }
       const userInfoResponse = await fetch(
         "http://localhost:3001/api/v1/user/profile",
         {
@@ -37,7 +44,17 @@ export const updateUserInfo = (
         )
       } else {
         const errorData = await userInfoResponse.json()
-        dispatch(updateUserInfoFailure(errorData.message))
+        if (userInfoResponse.status === 401) {
+          dispatch(updateUserInfoFailure(errorData.message))
+          console.error("Le jeton d'authentification a expiré.")
+          // Attendre 3 secondes avant de rediriger vers la page de connexion
+          setTimeout(() => {
+            redirect("/sign-in")
+            return
+          }, 3000)
+        } else {
+          dispatch(updateUserInfoFailure(errorData.message))
+        }
       }
     } catch (error) {
       console.error(

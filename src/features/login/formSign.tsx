@@ -10,7 +10,6 @@ import { selectLoginError } from "./selectors"
 function SignIn() {
   const navigationHelper = useNavigate()
   const dispatch: AppDispatch = useDispatch()
-  // Redux state pour obtenir l'erreur de connexion
   const loginError = useSelector(selectLoginError)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
