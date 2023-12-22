@@ -4,7 +4,7 @@ import {
   faEnvelopeOpen,
   faUserCircle,
 } from "@fortawesome/free-regular-svg-icons"
-import { useAuth } from "./action"
+import { useAuth } from "../../app/hooks"
 import logo from "../../designs/img/argentBankLogo.png"
 
 function Header() {
