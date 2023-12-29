@@ -21,7 +21,6 @@ export const updateUserInfo = (
     try {
       if (!token) {
         console.error("Jeton d'authentification manquant.")
-        // Rediriger vers la page de connexion
         redirect("/sign-in")
         return
       }

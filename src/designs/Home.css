@@ -5,16 +5,16 @@ html {
   text-align: center;
   color: #2c3e50;
 }
-.error-message{
-  color: red;
-}
+
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
+  max-width: 1400px;
+  margin: auto;
 
+}
 .main {
   flex: 1;
 }
@@ -192,12 +192,15 @@ body {
   padding: 10px;
   cursor: pointer;
 }
-.success-notification{
+
+.success-message{
   color: #00bc77;
 }
-.error-notification{
+
+.error-message{
   color: red;
 }
+
 @media (min-width: 920px) {
   .hero {
     height: 400px;

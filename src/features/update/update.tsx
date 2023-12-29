@@ -36,7 +36,7 @@ function UserUpdate({ onClose }: UserUpdateProps) {
     dispatch(updateUserInfo(newFirstName, newLastName) as any)
     if (updateSuccess) {
       setShowSuccessMessage(true)
-      // Ferme la modale automatiquement après un délai
+      // Ferme la modale automatiquement après 2 secondes
       setTimeout(() => {
         setShowSuccessMessage(false)
         closeModal()
@@ -113,13 +113,11 @@ function UserUpdate({ onClose }: UserUpdateProps) {
           </div>
 
           {showSuccessMessage && (
-            <label className="success-notification">
-              La mise à jour a réussi !
-            </label>
+            <label className="success-message">La mise à jour a réussi !</label>
           )}
 
           {showErrorMessage && (
-            <div className="error-notification">
+            <div className="error-message">
               Échec de la mise à jour : {updateError}
             </div>
           )}
