@@ -13,7 +13,7 @@ export const informationState: InfoState = {
   error: null,
 }
 
-// Fonction de réduction pour gérer les actions liées à l'utilisateur
+// Fonction pour gérer les actions liées à l'utilisateur
 const infoReducer = (state = informationState, action: any) => {
   switch (action.type) {
     // Gère l'action d'info récuperer
